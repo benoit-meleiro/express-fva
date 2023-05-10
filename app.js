@@ -2,11 +2,29 @@ const express = require('express')
 const morgan = require('morgan')
 const favicon = require ('serve-favicon')
 const bodyParser = require('body-parser')
+const { Sequelize } = require('sequelize')
 const {success, getUniqueId} = require('./helper.js');
 let players = require('./mock-player');
   
 const app = express()
 const port = 3000
+
+const sequelize = new Sequelize(
+    'fva-players-bdd', // choix fait pour la base de données
+    'root',
+    '',
+    {host: 'localhost',
+    dialect: 'mariadb',
+    dialectOptions: {
+        timezone:'Etc/GMT-2'
+    },
+    logging: false
+}
+)
+ // ? on va vérifier si la connexion s'est bien faite
+ sequelize.authenticate()
+    .then(_ => console.log('la connexion à la base de données a bien été établie'))
+    .catch(error => console.error(`impossible de se cdonnecter à la base de données ${error}`))
 
 app
     .use(favicon(__dirname + '/favicon.ico'))
@@ -54,6 +72,14 @@ app.put('/players/:id', (req, res) => {
     const message = `Le joueur ${playerUpdated.firstName} a bien été modifié.`
     res.json(success(message, playerUpdated))
    });
+
+   app.delete('/players/:id', (req, res) => {
+    const id = parseInt(req.params.id)
+    const playerDeleted = players.find(player => player.id === id)
+    players = players.filter(player => player.id !== id)
+    const message = `Le jouer ${playerDeleted.firstname} a bien été supprimé.`
+    res.json(success(message, playerDeleted))
+  });
 
 app.listen(port, () => console.log(`Notre application Node est démarrée sur : http://localhost:${port}`))
 
