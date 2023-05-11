@@ -1,19 +1,19 @@
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define('Creneau', {
+    return sequelize.define('Session', {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
       },
-      date_creneau: {
+      date_session: {
         type: DataTypes.DATEONLY,
         allowNull: false
       },
-      jour_creneau: {
+      jour_session: {
         type: DataTypes.STRING,
         allowNull: false
       },
-      disponibilite_creneau: {
+      disponibilite_session: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: true

@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define('Creneau', {
+    return sequelize.define('Interclub', {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -49,62 +49,57 @@ module.exports = (sequelize, DataTypes) => {
       joueur_sh_1: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: ["NS","pas_de_photos.jpg"]
-      },
-      joueur_sh_1: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: ["NS","pas_de_photos.jpg"]
+        defaultValue: "pas_de_photos.jpg"
       },
       joueur_sh_2: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: ["NS","pas_de_photos.jpg"]
+        defaultValue: "pas_de_photos.jpg"
       },
       joueur_sd: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: ["NS","pas_de_photos.jpg"]
+        defaultValue: "pas_de_photos.jpg"
       },
       joueur_1_dh: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: ["NS","pas_de_photos.jpg"]
+        defaultValue: "pas_de_photos.jpg"
       },
       joueur_2_dh: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: ["NS","pas_de_photos.jpg"]
+        defaultValue: "pas_de_photos.jpg"
       },
       joueur_1_dd: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: ["NS","pas_de_photos.jpg"]
+        defaultValue: "pas_de_photos.jpg"
       },
       joueur_2_dd: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: ["NS","pas_de_photos.jpg"]
+        defaultValue: "pas_de_photos.jpg"
       },
       joueur_1_dm_1: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: ["NS","pas_de_photos.jpg"]
+        defaultValue: "pas_de_photos.jpg"
       },
       joueur_2_dm_1: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: ["NS","pas_de_photos.jpg"]
+        defaultValue: "pas_de_photos.jpg"
       },
       joueur_1_dm_2: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: ["NS","pas_de_photos.jpg"]
+        defaultValue: "pas_de_photos.jpg"
       },
       joueur_2_dm_2: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: ["NS","pas_de_photos.jpg"]
+        defaultValue: "pas_de_photos.jpg"
       }
     }, {
       timestamps: true,
