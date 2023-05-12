@@ -4,12 +4,14 @@ const favicon = require ('serve-favicon')
 const bodyParser = require('body-parser')
 const { Sequelize, DataTypes} = require('sequelize')
 // const {success, getUniqueId} = require('./helper.js');
-// let players = require('./src/db/mock-player');
-const PlayerModel = require('./src/models/player')
-// let sessions = require('./src/db/mock-session');
-const SessionModel = require('./src/models/session')
-// let interclubs = require('./src/db/mock-interclub');
-const InterclubModel = require('./src/models/interclub')
+let players = require('./src/db/mock-player');
+let sessions = require('./src/db/mock-session');
+let clubs = require('./src/db/mock-club');
+const PlayerModel = require('./src/models/player');
+const SessionModel = require('./src/models/session');
+const ClubModel = require('./src/models/club');
+
+
 
 
   
@@ -37,69 +39,74 @@ const sequelize = new Sequelize(
 // //* on instancie notre modèle
 const Player = PlayerModel (sequelize, DataTypes)
 const Session = SessionModel (sequelize, DataTypes)
-const Interclub = InterclubModel (sequelize, DataTypes)
+const Club = ClubModel (sequelize, DataTypes)
 
 //* On synchronise notre demande (méthode sync)
-sequelize.sync({force: true})
+sequelize.sync({force: false})
     .then(_ => console.log('La base de données "fva-bdd" a bien été synchronisée'))
 
-//* on ajoute les joueurs du mock-player
+    clubs.map(club => {
+        Club.create({
+            equipe: club.equipe, 
+            numeroMatch: club.numeroMatch,
+            dateInter: club.dateInter,
+            jourInter: club.jourInter,
+            heureInter: club.heureInter,
+            receptionInter: club.receptionInter,
+            adversaireInter: club.adversaireInter,
+            lieuInter: club.lieuInter,
+            joueursDisposEq: club.joueursDisposEq,
+            joueursNonDisposEq: club.joueursNonDisposEq,
+            joueurSh1: club.joueurSh1,
+            joueurSh2: club.joueurSh2,
+            joueurSd: club.joueurSd,
+            joueur1Dh: club.joueur1Dh,
+            joueur2Dh: club.joueur2Dh,
+            joueur1Dd: club.joueur1Dd,
+            joueur2Dd: club.joueur2Dd,
+            joueur1Dm1: club.joueur1Dm1,
+            joueur2Dm1: club.joueur2Dm1,
+            joueur1Dm2: club.joueur1Dm2,
+            joueur2Dm2: club.joueur2Dm2,
 
-    //   players.map(player => {
-    //     Player.create({
-    //         firstName: player.firstName,
-    //         lastName: player.lastName,
-    //         emailPlayer: player.emailPlayer,
-    //         password: player.password,
-    //         man: player.man,
-    //         joueur_interclubs: player.joueur_interclubs,
-    //         joueur_capitaine: player.joueur_capitaine,
-    //         droits: player.droits,
-    //         jour_ouverture: player.jour_ouverture,
-    //         photos: player.photos
-    //     }).then(player => console.log(player.toJSON()))
-    //   })
-    //   console.log('La base de donnée players a bien été initialisée !')
-// //  //* on ajoute les sessions du mock-player   
-//     sessions.map(session => {
-//       Session.create({
-//             date_session: session.date_session,
-//             jour_session: session.jour_session,
-//             disponibilite_session: session.disponibilite_session,
-//             nom_responsable_ouverture: session.nom_responsable_ouverture,
-//             matchs_interclubs: session.matchs_interclubs,
-//             nbre_inscrits: session.nbre_inscrits,
-//             joueurs_présents: session.joueurs_présents.join()
+       }).then(club => console.log(club.toJSON()))
+     })
+     console.log('La base de donnée club a bien été initialisée !')      
+
+// // //* on ajoute les joueurs du mock-player
+
+      players.map(player => {
+        Player.create({
+            firstName: player.firstName,
+            lastName: player.lastName,
+            emailPlayer: player.emailPlayer,
+            password: player.password,
+            man: player.man,
+            joueur_interclubs: player.joueur_interclubs,
+            joueur_capitaine: player.joueur_capitaine,
+            droits: player.droits,
+            jour_ouverture: player.jour_ouverture,
+            photos: player.photos
+        }).then(player => console.log(player.toJSON()))
+      })
+      console.log('La base de donnée players a bien été initialisée !')
+
+ //* on ajoute les sessions du mock-player   
+    sessions.map(session => {
+      Session.create({
+            dateSession: session.dateSession,
+            jourSession: session.jourSession,
+            disponibiliteSession: session.disponibiliteSession,
+            nomResponsableOuverture: session.nomResponsableOuverture,
+            matchsInterclubs: session.matchsInterclubs,
+            nbreInscrits: session.nbreInscrits,
+            joueursPresents: session.joueursPresents
             
-//       }).then(session => console.log(session.toJSON()))
-//     })
-//     console.log('La base de donnée session a bien été initialisée !')  
-//     interclubs.map(interclub => {
-//         Interclub.create({
-//             equipe_inter: interclub.equipe_inter,
-//             numero_match: interclub.numero_match,
-//             date_inter: interclub.date_inter,
-//             jour_inter: interclub.jour_inter,
-//             heure_inter: interclub.heure_inter,
-//             reception_inter: interclub.reception_inter,
-//             adversaire_inter: interclub.adversaire_inter,
-//             lieu_inter: interclub.lieu_inter,
-//             joueurs_dispos_eq: interclub.joueurs_dispos_eq.join(),
-//             joueur_sh_1: interclub.joueur_sh_1.join(),
-//             joueur_sh_2: interclub.joueur_sh_2.join(),
-//             joueur_sd: interclub.joueur_sd.join(),
-//             joueur_1_dh: interclub.joueur_1_dh.join(),
-//             joueur_2_dh: interclub.joueur_2_dh.join(),
-//             joueur_1_dd: interclub.joueur_1_dd.join(),
-//             joueur_2_dd: interclub.joueur_2_dd.join(),
-//             joueur_1_dm_1: interclub.joueur_1_dm_1.join(),
-//             joueur_2_dm_1: interclub.joueur_2_dm_1.join(),
-//             joueur_1_dm_2: interclub.joueur_1_dm_1.join(),
-//             joueur_2_dm_2: interclub.joueur_2_dm_1.join()
+      }).then(session => console.log(session.toJSON()))
+    })
+    console.log('La base de donnée session a bien été initialisée !')  
 
-//         }).then(session => console.log(session.toJSON()))
-//       })
-//       console.log('La base de donnée session a bien été initialisée !')  
+    
   
 
 app

@@ -5,34 +5,34 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true
       },
-      date_session: {
+      dateSession: {
         type: DataTypes.DATEONLY,
         allowNull: false
       },
-      jour_session: {
+      jourSession: {
         type: DataTypes.STRING,
         allowNull: false
       },
-      disponibilite_session: {
+      disponibiliteSession: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: true
       },
-      nom_responsable_ouverture: {
+      nomResponsableOuverture: {
         type: DataTypes.STRING,
         allowNull: false
       },
-      matchs_interclubs: {
+      matchsInterclubs: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: false
       },
-      nbre_inscrits: {
+      nbreInscrits: {
         type: DataTypes.INTEGER,
         allowNull: false,
         defaultValue: 1
       },
-      joueurs_présents: {
+      joueursPresents: {
         type: DataTypes.STRING,
         allowNull: false,
         defaultValue: "non"
