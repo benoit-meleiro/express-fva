@@ -49,9 +49,9 @@ const initDb = () => {
 
        })
        .then(club => console.log(club.toJSON()))
-       console.log('La base de donnée club a bien été initialisée !')
+       
      })
-           
+        console.log('La base de donnée club a bien été initialisée !')   
     })
  //* on ajoute les joueurs du mock-player
  .then(() => { 
@@ -69,8 +69,9 @@ const initDb = () => {
             jour_ouverture: player.jour_ouverture,
             photos: player.photos
         }).then(player => console.log(player.toJSON()))
-        console.log('La base de donnée players a bien été initialisée !')
+        
       })
+      console.log('La base de donnée players a bien été initialisée !')
     })    
       
 
