@@ -13,21 +13,13 @@ app
     .use(morgan('dev'))
     .use(bodyParser.json())
 
-// toutes mes points de terminaisons    
-require('./src/controllers/findAllPlayers')(app) 
-require('./src/controllers/findPlayerByPk')(app) 
-require('./src/controllers/createPlayer')(app) 
-require('./src/controllers/updatePlayer')(app) 
-require('./src/controllers/deletePlayer')(app) 
+const playerRouter = require('./src/routes/playerRoutes')
+const sessionRouter = require('./src/routes/sessionRoutes')
+const clubRouter = require('./src/routes/clubRoutes')
 
-
-// const playerRouter = require('./src/routes/playerRoutes')
-// const sessionRouter = require('./src/routes/sessionRoutes')
-// const clubRouter = require('./src/routes/clubRoutes')
-
-// app.use('/api/players', playerRouter)
-// app.use('/api/sessions', sessionRouter)
-// app.use('/api/clubs', clubRouter)
+app.use('/players', playerRouter)
+app.use('/sessions', sessionRouter)
+app.use('/clubs', clubRouter)
 
 
 
