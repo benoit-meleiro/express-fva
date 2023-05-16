@@ -7,7 +7,11 @@ module.exports = (sequelize, DataTypes) => {
       },
       firstName: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+          notEmpty: {msg:"le nom ne peut pas être vide"},
+          notNull: {msg: "le nom est une propriété requise"}
+        }
       },
       lastName: {
         type: DataTypes.STRING,
@@ -15,7 +19,10 @@ module.exports = (sequelize, DataTypes) => {
       },
       emailPlayer: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: {
+          msg: 'Le mail doit être unique et associé à un seul joueur'
+        }
       },
       password: {
         type: DataTypes.STRING,

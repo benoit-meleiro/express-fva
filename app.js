@@ -21,7 +21,10 @@ app.use('/players', playerRouter)
 app.use('/sessions', sessionRouter)
 app.use('/clubs', clubRouter)
 
-
+app.use(({res}) => {
+    const message=" impossible de trouver la ressource demandée ! vous pouvez essayer une autre URL"
+    res.status(404).json({message})
+})
 
 app
     .listen(port, () => console.log(`Notre application Node est démarrée sur : http://localhost:${port}`))

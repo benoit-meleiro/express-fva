@@ -11,7 +11,20 @@ module.exports = (sequelize, DataTypes) => {
       },
       numeroMatch: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        validate:{
+          isInt: {msg: "utilisez uniquement des nombres entiers"},
+          notNull: {msg:"le numéro de match ne peut pas être à zéro"}
+        },
+        min: {
+          args: [1],
+          msg: "le numero mini pour un match est 1"
+        },
+        max: {
+          args: [12],
+          msg: "le numéro max pour un match est 12"
+        }
+
       },
       dateInter: {
         type: DataTypes.DATEONLY,
