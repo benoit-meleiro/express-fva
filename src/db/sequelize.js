@@ -19,6 +19,13 @@ const Player = PlayerModel (sequelize, DataTypes)
 const Session = SessionModel (sequelize, DataTypes)
 const Club = ClubModel (sequelize, DataTypes)
 
+// Table intermédiaire pour inscription session
+Player.belongsToMany(Session, { through: 'Inscription' });
+Session.belongsToMany(Player, { through: 'Inscription' });
+
+
+
+
  //* On synchronise notre demande (méthode sync) 
 const initDb = () => {
   return sequelize.sync({force: true})

@@ -16,16 +16,14 @@ router
 router
     .route('/:id')
     .get(authController.protect, playerController.findPlayerByPk)
-    .delete(authController.protect, playerController.deletePlayer)
+    .delete(authController.protect, authController.restrictTo('admin'), playerController.deletePlayer)
     .put(authController.protect, playerController.updatePlayer)
    
 router
     .route('/login')
     .post(authController.login)
 
-// router
-//     .route('signup')
-//     // .post(authcontroller.signup)
+
 
 
 module.exports = router; 
