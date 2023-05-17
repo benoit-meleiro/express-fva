@@ -19,12 +19,14 @@ exports.findAllClubs =  (req, res) => {
         if(club=== null){
           const message =`l'interclub demandé n'existe pas. Merci d'essayer avec un autre identifiant`
           res.status(404).json({message})
+        }else{
+          
+            const message = `L'interclub a bien été trouvé.`
+            res.json({ message, data: club })
+          
         }
       })
-        .then(club => {
-          const message = `L'interclub a bien été trouvé.`
-          res.json({ message, data: club })
-        })
+        
         .catch(error => {
           const message = `l'interclub n'a pu être récupéré. Merci de réessayer dans quelques instants !`
           res.status(500).json({message, data:error})

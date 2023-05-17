@@ -8,7 +8,7 @@ const players = [
     man: true,
     joueur_interclubs: "equipe_1",
     joueur_capitaine: "capitaine_eq_1",
-    droits: "capitaine",
+    roles: "capitaine",
     jour_ouverture: "non",
     photos: "Jean_Tourloupe.jpg"
   },
@@ -21,7 +21,7 @@ const players = [
     man: true,
     joueur_interclubs: "equipe_2",
     joueur_capitaine: "non",
-    droits: "joueur",
+    roles: "équipe",
     jour_ouverture: "non",
     photos: "Luc_Harne.jpg"
   },
@@ -34,7 +34,7 @@ const players = [
     man: true,
     joueur_interclubs: "loisir",
     joueur_capitaine: "non",
-    droits: "joueur",
+    roles: "loisir",
     jour_ouverture: "lundi",
     photos: "Olivier_Tnam.jpg"
   },
@@ -47,7 +47,7 @@ const players = [
     man: true,
     joueur_interclubs: "equipe_2",
     joueur_capitaine: "non",
-    droits: "joueur",
+    roles: "équipe",
     jour_ouverture: "non",
     photos: "Remy_Neur.jpg"
   },
@@ -60,7 +60,7 @@ const players = [
     man: false,
     joueur_interclubs: "equipe_2",
     joueur_capitaine: "non",
-    droits: "joueur",
+    roles: "équipe",
     jour_ouverture: "non",
     photos: "Melusine_Engraiv.jpg"
   },
@@ -73,7 +73,7 @@ const players = [
     man: true,
     joueur_interclubs: "loisir",
     joueur_capitaine: "non",
-    droits: "joueur",
+    roles: "loisir",
     jour_ouverture: "non",
     photos: "Al_Anbique.jpg"
   },
@@ -86,7 +86,7 @@ const players = [
     man: true,
     joueur_interclubs: "loisir",
     joueur_capitaine: "non",
-    droits: "joueur",
+    roles: "loisir",
     jour_ouverture: "mardi",
     photos: "Sam_Soule.jpg"
   },
@@ -99,7 +99,7 @@ const players = [
     man: false,
     joueur_interclubs: "equipe_1",
     joueur_capitaine: "non",
-    droits: "joueur",
+    roles: "équipe",
     jour_ouverture: "non",
     photos: "Tara_Clure.jpg"
   },
@@ -112,7 +112,7 @@ const players = [
     man: true,
     joueur_interclubs: "equipe_2",
     joueur_capitaine: "non",
-    droits: "admin",
+    roles: "admin",
     jour_ouverture: "non",
     photos: "Gerard_manvussa.jpg"
   },
@@ -125,7 +125,7 @@ const players = [
     man: false,
     joueur_interclubs: "loisir",
     joueur_capitaine: "non",
-    droits: "joueur",
+    roles: "loisir",
     jour_ouverture: "non",
     photos: "Sandra_Nicouette.jpg"
   },
@@ -138,7 +138,7 @@ const players = [
     man: false,
     joueur_interclubs: "equipe_1",
     joueur_capitaine: "non",
-    droits: "joueur",
+    roles: "équipe",
     jour_ouverture: "non",
     photos: "Anne_Abolisant.jpg"
   },
@@ -151,7 +151,7 @@ const players = [
     man: false,
     joueur_interclubs: "equipe_2",
     joueur_capitaine: "capitaine_eq_2",
-    droits: "capitaine",
+    roles: "capitaine",
     jour_ouverture: "non",
     photos: "Elsa_Rose.jpg"
   },
@@ -164,7 +164,7 @@ const players = [
     man: true,
     joueur_interclubs: "equipe_1",
     joueur_capitaine: "non",
-    droits: "joueur",
+    roles: "équipe",
     jour_ouverture: "non",
     photos: "Marc_Assin.jpg"
   },
@@ -177,7 +177,7 @@ const players = [
     man: true,
     joueur_interclubs: "loisir",
     joueur_capitaine: "non",
-    droits: "joueur",
+    roles: "loisir",
     jour_ouverture: "non",
     photos: "Oscar_Ibou.jpg"
   },
@@ -190,7 +190,7 @@ const players = [
     man: true,
     joueur_interclubs: "loisir",
     joueur_capitaine: "non",
-    droits: "joueur",
+    roles: "loisir",
     jour_ouverture: "mercredi",
     photos: "Abdel_Icieux.jpg"
   },
@@ -203,7 +203,7 @@ const players = [
     man: false,
     joueur_interclubs: "equipe_1",
     joueur_capitaine: "non",
-    droits: "joueur",
+    roles: "équipe",
     jour_ouverture: "non",
     photos: "Cecile_Anssieux.jpg"
   },
@@ -216,7 +216,7 @@ const players = [
     man: false,
     joueur_interclubs: "equipe_2",
     joueur_capitaine: "non",
-    droits: "joueur",
+    roles: "équipe",
     jour_ouverture: "non",
     photos: "Anne_Ogastric.jpg"
   },
@@ -229,7 +229,7 @@ const players = [
     man: true,
     joueur_interclubs: "equipe_1",
     joueur_capitaine: "non",
-    droits: "joueur",
+    roles: "équipe",
     jour_ouverture: "non",
     photos: "Franck_Fort.jpg"
   },
@@ -242,7 +242,7 @@ const players = [
     man: true,
     joueur_interclubs: "equipe_2",
     joueur_capitaine: "non",
-    droits: "joueur",
+    roles: "équipe",
     jour_ouverture: "non",
     photos: "Mehdi_Khaman.jpg"
   },
@@ -255,7 +255,7 @@ const players = [
     man: false,
     joueur_interclubs: "loisir",
     joueur_capitaine: "non",
-    droits: "joueur",
+    roles: "loisir",
     jour_ouverture: "jeudi",
     photos: "Marthe_Ini.jpg"
   },
@@ -268,7 +268,7 @@ const players = [
     man: false,
     joueur_interclubs: "loisir",
     joueur_capitaine: "non",
-    droits: "admin",
+    roles: "admin",
     jour_ouverture: "non",
     photos: "Jenny_Fraireniseur.jpg"
   },
@@ -281,7 +281,7 @@ const players = [
     man: false,
     joueur_interclubs: "equipe_1",
     joueur_capitaine: "non",
-    droits: "joueur",
+    roles: "équipe",
     jour_ouverture: "non",
     photos: "Sarah_Joute.jpg"
   },
@@ -294,7 +294,7 @@ const players = [
     man: false,
     joueur_interclubs: "equipe_2",
     joueur_capitaine: "non",
-    droits: "joueur",
+    roles: "équipe",
     jour_ouverture: "non",
     photos: "Sandy_manche.jpg"
   },
@@ -307,7 +307,7 @@ const players = [
     man: true,
     joueur_interclubs: "equipe_2",
     joueur_capitaine: "non",
-    droits: "joueur",
+    roles: "équipe",
     jour_ouverture: "non",
     photos: "Marty_Nais.jpg"
   },
@@ -320,7 +320,7 @@ const players = [
     man: true,
     joueur_interclubs: "equipe_1",
     joueur_capitaine: "non",
-    droits: "joueur",
+    roles: "équipe",
     jour_ouverture: "non",
     photos: "Mouss_Tache.jpg"
   },
@@ -333,7 +333,7 @@ const players = [
     man: false,
     joueur_interclubs: "loisir",
     joueur_capitaine: "non",
-    droits: "joueur",
+    roles: "loisir",
     jour_ouverture: "vendredi",
     photos: "Callie_Fornie.jpg"
   },
@@ -346,7 +346,7 @@ const players = [
     man: true,
     joueur_interclubs: "equipe_1",
     joueur_capitaine: "non",
-    droits: "joueur",
+    roles: "équipe",
     jour_ouverture: "non",
     photos: "Jim_Nastique.jpg"
   },
@@ -359,7 +359,7 @@ const players = [
     man: true,
     joueur_interclubs: "equipe_2",
     joueur_capitaine: "non",
-    droits: "joueur",
+    roles: "équipe",
     jour_ouverture: "non",
     photos: "Laurent_Bar.jpg"
   },
@@ -372,7 +372,7 @@ const players = [
     man: false,
     joueur_interclubs: "equipe_1",
     joueur_capitaine: "non",
-    droits: "joueur",
+    roles: "équipe",
     jour_ouverture: "non",
     photos: "Lara_Clette.jpg"
   },
@@ -385,7 +385,7 @@ const players = [
     man: false,
     joueur_interclubs: "equipe_2",
     joueur_capitaine: "non",
-    droits: "joueur",
+    roles: "équipe",
     jour_ouverture: "non",
     photos: "Emma_Yonaise.jpg"
   }

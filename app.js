@@ -17,9 +17,11 @@ const playerRouter = require('./src/routes/playerRoutes')
 const sessionRouter = require('./src/routes/sessionRoutes')
 const clubRouter = require('./src/routes/clubRoutes')
 
+
 app.use('/players', playerRouter)
 app.use('/sessions', sessionRouter)
 app.use('/clubs', clubRouter)
+
 
 app.use(({res}) => {
     const message=" impossible de trouver la ressource demandée ! vous pouvez essayer une autre URL"

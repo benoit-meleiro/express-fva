@@ -44,16 +44,18 @@ exports.findAllPlayers =  (req, res) => {
 
   exports.findPlayerByPk = (req, res) => {
       Player.findByPk(req.params.id)
-        .then(player => {
-          if(player=== null){
+        .then(players => {
+          if(players=== null){
             const message =`le joueur demandé n'existe pas. Merci d'essayer avec un autre identifiant`
             res.status(404).json({message})
+          } else{
+            
+              const message = 'Le joueur a bien été trouvé.'
+              res.json({ message, data: players })
+            
           }
         })
-        .then(player => {
-          const message = 'Le joueur a bien été trouvé.'
-          res.json({ message, data: player })
-        })
+        
         .catch(error => {
           const message = `le joueur n'a pu être récupéré. Merci de réessayer dans quelques instants !`
           res.status(500).json({message, data:error})
@@ -63,6 +65,7 @@ exports.findAllPlayers =  (req, res) => {
     exports.createPlayer = (req, res) => {
           Player.create(req.body)
             .then(player => {
+              console.log(req.body)
               const message = `Le joueur ${req.body.firstName} ${req.body.lastName} a bien été crée.`
               res.json({ message, data: player })
             })

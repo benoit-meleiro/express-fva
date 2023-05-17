@@ -1,3 +1,5 @@
+// const userRoles = ['loisir', 'équipe', 'capitaine', 'admin']
+
 module.exports = (sequelize, DataTypes) => {
     return sequelize.define('Player', {
       id: {
@@ -20,6 +22,9 @@ module.exports = (sequelize, DataTypes) => {
       emailPlayer: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate:{
+          isEmail: true
+        },
         unique: {
           msg: 'Le mail doit être unique et associé à un seul joueur'
         }
@@ -43,11 +48,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         defaultValue: "non"
       },
-      droits: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: "joueur"
-      },
       jour_ouverture: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -57,10 +57,63 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         defaultValue: "pas-de-photos.jpg"
+      },
+      roles: {
+        type: DataTypes.STRING,
+        defaultValue: 'user',
+        // get() {
+        //   return this.getDataValue('roles').split(',');
+        // },
+        // set(roles) {
+        //   this.setDataValue('roles', roles.join());
+        // },
+        
+        // validate: {
+        //   areRolesValid(roles){
+        //     if(!roles){
+        //       throw new Error('Un utilisateur doit avoir au moins un rôle')
+        //     }
+        //     roles.split(',').forEach(role => {
+        //       if(!userRoles.includes(role)){
+        //         throw new Error(`Les rôles d'un utilisateur doivent appartenir à la liste suivante : ${userRoles}`)
+        //       }
+        //     })
+        //   }
+        // }
+        get() {
+          return this.getDataValue('roles').split(',');
+        },
+        set(roles) {
+          if (Array.isArray(roles)) {
+            this.setDataValue('roles', roles.join());
+          } else {
+            this.setDataValue('roles', roles);
+          }
+        },
+        
+        validate: {
+          areRolesValid(roles){
+            const userRoles = ['loisir', 'équipe', 'capitaine', 'admin']; // Remplacez par votre liste de rôles autorisés
+            if (!roles) {
+              throw new Error('Un utilisateur doit avoir au moins un rôle');
+            }
+            roles.split(',').forEach(role => {
+              if (!userRoles.includes(role)) {
+                throw new Error(`Les rôles d'un utilisateur doivent appartenir à la liste suivante : ${userRoles}`);
+              }
+            });
+          }
+        }
       }
     }, {
-      timestamps: true,
-      createdAt: 'created',
-      updatedAt: false
-    })
+        timestamps: true,
+        createdAt: 'created',
+        updatedAt: false,
+        scopes: {
+          withoutPassword: {
+              attributes: { exclude: ['password'] },
+          }
+      }
+    },
+    )
   }

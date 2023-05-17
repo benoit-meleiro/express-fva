@@ -5,6 +5,7 @@ const clubs = require('./mock-club');
 const PlayerModel = require('../models/player');
 const SessionModel = require('../models/session');
 const ClubModel = require('../models/club');
+const bcrypt = require('bcrypt')
   
 const sequelize = new Sequelize(
     'fva', // choix fait pour la base de données
@@ -57,20 +58,23 @@ const initDb = () => {
  .then(() => { 
 
     players.map(player => {
+      bcrypt.hash(player.password, 10)
+        .then(hash => {
         Player.create({
             firstName: player.firstName,
             lastName: player.lastName,
             emailPlayer: player.emailPlayer,
-            password: player.password,
+            password: hash,
             man: player.man,
             joueur_interclubs: player.joueur_interclubs,
             joueur_capitaine: player.joueur_capitaine,
-            droits: player.droits,
+            roles: player.roles,
             jour_ouverture: player.jour_ouverture,
             photos: player.photos
         }).then(player => console.log(player.toJSON()))
         
       })
+    })
       console.log('La base de donnée players a bien été initialisée !')
     })    
       
@@ -101,5 +105,5 @@ const initDb = () => {
         .catch(error => console.error(`impossible de se connecter à la base de données ${error}`))
   
 module.exports = { 
-  initDb, Player, Session, Club 
+  initDb, Player, Session, Club, sequelize
 }

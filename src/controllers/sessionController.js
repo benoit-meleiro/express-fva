@@ -18,12 +18,14 @@ exports.findAllSessions =  (req, res) => {
         if(session=== null){
           const message =`la session demandée n'existe pas. Merci d'essayer avec un autre identifiant`
           res.status(404).json({message})
+        }else{
+          
+            const message = 'La session a bien été trouvée.'
+            res.json({ message, data: session })
+          
         }
       })
-        .then(session => {
-          const message = 'La session a bien été trouvée.'
-          res.json({ message, data: session })
-        })
+        
         .catch(error => {
           const message = `la session n'a pu être récupérée. Merci de réessayer dans quelques instants !`
           res.status(500).json({message, data:error})
