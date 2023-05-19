@@ -9,10 +9,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DATEONLY,
         allowNull: false
       },
-      jourSession: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
       disponibiliteSession: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
@@ -22,21 +18,16 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
+      prenomResponsableOuverture: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
       matchsInterclubs: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: false
       },
-      nbreInscrits: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        defaultValue: 1
-      },
-      joueursPresents: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: "non"
-      }
+      
     }, {
       timestamps: true,
       createdAt: 'created',

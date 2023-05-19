@@ -5,13 +5,12 @@ const authController = require('../controllers/authController')
 
 router
     .route('/')
-    .get(authController.protect,sessionController.findAllSessions)
-    .post(authController.protect,sessionController.createSession)
+    .get(sessionController.findAllSessions)
+    .post(sessionController.createSession)
+    // .get(authController.protect,sessionController.findAllSessions)
+    // .post(authController.protect,sessionController.createSession)
     // .post(authController.protect, playerController.createPlayer)
 
-// router
-//     .route('/withReview')
-//     .get(coworkingController.findAllCoworkingsByReviewSQL)
 
 router
     .route('/:id')

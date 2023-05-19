@@ -3,8 +3,11 @@ const morgan = require('morgan')
 const favicon = require ('serve-favicon')
 const bodyParser = require('body-parser')
 const sequelize = require('./src/db/sequelize')
+var cors = require("cors");
 const app = express()
-const port = 3000
+const port = 3002
+
+app.use(cors());
 
 sequelize.initDb();
 
