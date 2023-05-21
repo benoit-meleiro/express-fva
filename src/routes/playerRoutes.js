@@ -5,9 +5,11 @@ const authController = require('../controllers/authController');
 
 router
     .route('/')
-    .get(authController.protect, playerController.findAllPlayers)
-    .post(authController.protect, playerController.createPlayer)
+    .get(playerController.findAllPlayers)
+    .post(playerController.createPlayer)
+    // .get(authController.protect, playerController.findAllPlayers)
     // .post(authController.protect, playerController.createPlayer)
+    
 
 // router
 //     .route('/withReview')
@@ -15,9 +17,12 @@ router
 
 router
     .route('/:id')
-    .get(authController.protect, playerController.findPlayerByPk)
-    .delete(authController.protect, authController.restrictTo('admin'), playerController.deletePlayer)
-    .put(authController.protect, playerController.updatePlayer)
+    .get( playerController.findPlayerByPk)
+    .delete(playerController.deletePlayer)
+    .put(playerController.updatePlayer)
+    // .get(authController.protect, playerController.findPlayerByPk)
+    // .delete(authController.protect, authController.restrictTo('admin'), playerController.deletePlayer)
+    // .put(authController.protect, playerController.updatePlayer)
    
 router
     .route('/login')

@@ -1,6 +1,7 @@
 const { Player } = require('../db/sequelize')
 const { UniqueConstraintError } = require('sequelize')
-const { Op } = require('sequelize')  
+const { Op } = require('sequelize')
+const bcrypt = require('bcrypt'); 
 
 // const capitalize = (str) => str.charAt(0).toUpperCase() + str.substring(1)
 
@@ -63,45 +64,97 @@ exports.findAllPlayers =  (req, res) => {
     }
 
     exports.createPlayer = (req, res) => {
-          Player.create(req.body)
-            .then(player => {
-              console.log(req.body)
-              const message = `Le joueur ${req.body.firstName} ${req.body.lastName} a bien été crée.`
-              res.json({ message, data: player })
+      const { firstName, lastName, sexe, emailPlayer, password, roles, jour_ouverture, joueur_interclubs, joueur_capitaine, photos } = req.body;
+    
+      bcrypt.hash(password, 10)
+        .then((hashedPassword) => {
+          const playerData = {
+            firstName,
+            lastName,
+            sexe,
+            emailPlayer,
+            password: hashedPassword,
+            roles,
+            jour_ouverture,
+            joueur_interclubs,
+            joueur_capitaine,
+            photos
+          };
+    
+          Player.create(playerData)
+            .then((player) => {
+              const message = `Le joueur ${player.firstName} ${player.lastName} a bien été créé.`;
+              res.json({ message, data: player });
             })
-            .catch(error => {
-              if(error instanceof UniqueConstraintError) {
-                return res.status(400).json({ message: 'error.message', data: error });
+            .catch((error) => {
+              if (error instanceof UniqueConstraintError) {
+                return res.status(400).json({ message: error.message, data: error });
               }
-              const message = `le joueur n'a pu être ajouté. Merci de réessayer dans quelques instants !`
-              res.status(500).json({message, data:error})
-            })
-        }
+              const message = `Le joueur n'a pas pu être ajouté. Merci de réessayer dans quelques instants !`;
+              res.status(500).json({ message, data: error });
+            });
+        })
+        .catch((error) => {
+          console.error('Error while hashing password:', error);
+          const message = 'Une erreur s\'est produite lors du traitement de votre demande.';
+          res.status(500).json({ message, data: error });
+        });
+    };
 
     exports.updatePlayer = (req, res) => {
-            const id = req.params.id
-            Player.update(req.body, {
-            where: { id: id }
-            })
-            .then(() => {
-            return Player.findByPk(id).then(player => {
-              if(player=== null){
-                const message =`le joueur demandé n'existe pas. Merci d'essayer avec un autre identifiant`
-                res.status(404).json({message})
-              }
-                const message = `Le joueur ${player.firstName} ${player.lastName} a bien été modifié.`
-                res.json({message, data: player })
-            })
-            
-            })
-          .catch(error => {
-            if(error instanceof UniqueConstraintError) {
-              return res.status(400).json({ message: 'error.message', data: error });
+      const id = req.params.id;
+      const { password, ...updateData } = req.body;
+    
+      Player.findByPk(id)
+        .then((player) => {
+          if (player === null) {
+            const message = `Le joueur demandé n'existe pas. Merci d'essayer avec un autre identifiant.`;
+            res.status(404).json({ message });
+          } else {
+            if (password !== undefined && password !== "") {
+              bcrypt.hash(password, 10)
+                .then((hashedPassword) => {
+                  updateData.password = hashedPassword;
+                  updatePlayerData(id, updateData);
+                })
+                .catch((error) => {
+                  console.error('Error while hashing password:', error);
+                  const message = 'Une erreur s\'est produite lors du traitement de votre demande.';
+                  res.status(500).json({ message, data: error });
+                });
+            } else {
+              updatePlayerData(id, updateData);
             }
-            const message = `le joueur n'a pu être ajouté. Merci de réessayer dans quelques instants !`
-            res.status(500).json({message, data:error})
+          }
+        })
+        .catch((error) => {
+          const message = 'Une erreur s\'est produite lors du traitement de votre demande.';
+          res.status(500).json({ message, data: error });
+        });
+    
+      function updatePlayerData(id, updateData) {
+        Player.update(updateData, {
+          where: { id: id }
+        })
+          .then(() => {
+            return Player.findByPk(id).then((player) => {
+              const message = `Le joueur ${player.firstName} ${player.lastName} a bien été modifié.`;
+              res.json({ message, data: player });
+            });
           })
-        }
+          .catch((error) => {
+            if (error instanceof UniqueConstraintError) {
+              return res.status(400).json({ message: error.message, data: error });
+            }
+            const message = `Le joueur n'a pas pu être modifié. Merci de réessayer dans quelques instants !`;
+            res.status(500).json({ message, data: error });
+          });
+      }
+    };
+    
+    
+    
+    
 
      exports.deletePlayer = (req, res) => {
               Player.findByPk(req.params.id).then(player => {

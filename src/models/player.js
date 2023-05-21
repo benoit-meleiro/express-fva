@@ -33,10 +33,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
-      man: {
-        type: DataTypes.BOOLEAN,
+      sexe: {
+        type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: true
+        defaultValue: "masculin"
       },
       joueur_interclubs: {
         type: DataTypes.STRING,
@@ -60,7 +60,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       roles: {
         type: DataTypes.STRING,
-        defaultValue: 'user',
+        defaultValue: 'loisir',
         // get() {
         //   return this.getDataValue('roles').split(',');
         // },
