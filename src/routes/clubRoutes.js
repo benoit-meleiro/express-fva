@@ -1,20 +1,25 @@
 const express = require('express');
 const router = express.Router();
-const clubController = require('../controllers/clubController')
-const authController = require('../controllers/authController')
+const presentController = require('../controllers/presentController')
+// const authController = require('../controllers/authController')
 
 router
     .route('/')
-    .get(authController.protect, clubController.findAllClubs)
-    .post(authController.protect, clubController.createClub)
+    // .get(authController.protect, presentController.findAllClubs)
+    // .post(authController.protect, presentController.createClub)
+    // .get(presentController.findAllClubs)
+    // .post(presentController.createClub)
    
 
 
 router
     .route('/:id')
-    .get(authController.protect, clubController.findClubByPk)
-    .put(authController.protect, clubController.updateClub)
-    .delete(authController.protect, clubController.deleteclub)
+    .get(presentController.getSessionPlayers)
+    // .put(presentController.updateClub)
+    // .delete(presentController.deleteclub)
+    // .get(authController.protect, presentController.findClubByPk)
+    // .put(authController.protect, presentController.updateClub)
+    // .delete(authController.protect, presentController.deleteclub)
     
     
 

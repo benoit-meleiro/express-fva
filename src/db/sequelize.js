@@ -33,94 +33,94 @@ const initDb = () => {
   return sequelize.sync()
     .then(() => { 
 
-    clubs.map(club => {
-        Club.create({
-            equipe: club.equipe, 
-            numeroMatch: club.numeroMatch,
-            dateInter: club.dateInter,
-            jourInter: club.jourInter,
-            heureInter: club.heureInter,
-            receptionInter: club.receptionInter,
-            adversaireInter: club.adversaireInter,
-            lieuInter: club.lieuInter,
-            joueursDisposEq: club.joueursDisposEq,
-            joueursNonDisposEq: club.joueursNonDisposEq,
-            joueurSh1: club.joueurSh1,
-            joueurSh2: club.joueurSh2,
-            joueurSd: club.joueurSd,
-            joueur1Dh: club.joueur1Dh,
-            joueur2Dh: club.joueur2Dh,
-            joueur1Dd: club.joueur1Dd,
-            joueur2Dd: club.joueur2Dd,
-            joueur1Dm1: club.joueur1Dm1,
-            joueur2Dm1: club.joueur2Dm1,
-            joueur1Dm2: club.joueur1Dm2,
-            joueur2Dm2: club.joueur2Dm2,
+//     clubs.map(club => {
+//         Club.create({
+//             equipe: club.equipe, 
+//             numeroMatch: club.numeroMatch,
+//             dateInter: club.dateInter,
+//             jourInter: club.jourInter,
+//             heureInter: club.heureInter,
+//             receptionInter: club.receptionInter,
+//             adversaireInter: club.adversaireInter,
+//             lieuInter: club.lieuInter,
+//             joueursDisposEq: club.joueursDisposEq,
+//             joueursNonDisposEq: club.joueursNonDisposEq,
+//             joueurSh1: club.joueurSh1,
+//             joueurSh2: club.joueurSh2,
+//             joueurSd: club.joueurSd,
+//             joueur1Dh: club.joueur1Dh,
+//             joueur2Dh: club.joueur2Dh,
+//             joueur1Dd: club.joueur1Dd,
+//             joueur2Dd: club.joueur2Dd,
+//             joueur1Dm1: club.joueur1Dm1,
+//             joueur2Dm1: club.joueur2Dm1,
+//             joueur1Dm2: club.joueur1Dm2,
+//             joueur2Dm2: club.joueur2Dm2,
 
-       })
-       .then(club => console.log(club.toJSON()))
+//        })
+//        .then(club => console.log(club.toJSON()))
        
-     })
-        console.log('La base de donnée club a bien été initialisée !')   
-    })
- //* on ajoute les joueurs du mock-player
- .then(() => { 
+//      })
+//         console.log('La base de donnée club a bien été initialisée !')   
+//     })
+//  //* on ajoute les joueurs du mock-player
+//  .then(() => { 
 
-    players.map(player => {
-      bcrypt.hash(player.password, 10)
-        .then(hash => {
-        Player.create({
-            firstName: player.firstName,
-            lastName: player.lastName,
-            emailPlayer: player.emailPlayer,
-            password: hash,
-            sexe: player.sexe,
-            joueur_interclubs: player.joueur_interclubs,
-            joueur_capitaine: player.joueur_capitaine,
-            roles: player.roles,
-            jour_ouverture: player.jour_ouverture,
-            photos: player.photos
-        }).then(player => console.log(player.toJSON()))
+//     players.map(player => {
+//       bcrypt.hash(player.password, 10)
+//         .then(hash => {
+//         Player.create({
+//             firstName: player.firstName,
+//             lastName: player.lastName,
+//             emailPlayer: player.emailPlayer,
+//             password: hash,
+//             sexe: player.sexe,
+//             joueur_interclubs: player.joueur_interclubs,
+//             joueur_capitaine: player.joueur_capitaine,
+//             roles: player.roles,
+//             jour_ouverture: player.jour_ouverture,
+//             photos: player.photos
+//         }).then(player => console.log(player.toJSON()))
         
-      })
-    })
-      console.log('La base de donnée players a bien été initialisée !')
-    })    
+//       })
+//     })
+//       console.log('La base de donnée players a bien été initialisée !')
+//     })    
       
 
- //* on ajoute les sessions du mock-player   
- .then(()=> { 
+//  //* on ajoute les sessions du mock-player   
+//  .then(()=> { 
 
-    sessions.map(session => {
-        Session.create({
-              dateSession: session.dateSession,
-              disponibiliteSession: session.disponibiliteSession,
-              nomResponsableOuverture: session.nomResponsableOuverture,
-              prenomResponsableOuverture: session.prenomResponsableOuverture,
-              matchsInterclubs: session.matchsInterclubs
+//     sessions.map(session => {
+//         Session.create({
+//               dateSession: session.dateSession,
+//               disponibiliteSession: session.disponibiliteSession,
+//               nomResponsableOuverture: session.nomResponsableOuverture,
+//               prenomResponsableOuverture: session.prenomResponsableOuverture,
+//               matchsInterclubs: session.matchsInterclubs
               
   
-        }).then(session => console.log(session.toJSON()))
+//         }).then(session => console.log(session.toJSON()))
         
-      })
-      console.log('La base de donnée session a bien été initialisée !')      
-      })
- //* on ajoute les joueurs présents aux sessions
- .then(()=> { 
+//       })
+//       console.log('La base de donnée session a bien été initialisée !')      
+//       })
+//  //* on ajoute les joueurs présents aux sessions
+//  .then(()=> { 
 
-  inscriptions.map(inscription => {
-      Session.create({
-            dateSession: session.dateSession,
-            disponibiliteSession: session.disponibiliteSession,
-            nomResponsableOuverture: session.nomResponsableOuverture,
-            prenomResponsableOuverture: session.prenomResponsableOuverture,
-            matchsInterclubs: session.matchsInterclubs
+//   inscriptions.map(inscription => {
+//       Session.create({
+//             dateSession: session.dateSession,
+//             disponibiliteSession: session.disponibiliteSession,
+//             nomResponsableOuverture: session.nomResponsableOuverture,
+//             prenomResponsableOuverture: session.prenomResponsableOuverture,
+//             matchsInterclubs: session.matchsInterclubs
             
 
-      }).then(inscription => console.log(inscription.toJSON()))
+//       }).then(inscription => console.log(inscription.toJSON()))
       
-    })
-    console.log('La base de donnée session a bien été initialisée !')      
+//     })
+//     console.log('La base de donnée session a bien été initialisée !')      
     })
 
 .catch(error => console.log('Erreur'))

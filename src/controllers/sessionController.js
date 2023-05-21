@@ -85,4 +85,96 @@ exports.findAllSessions =  (req, res) => {
                 res.status(500).json({message, data:error})
               })
             }
-          
+
+ //* Présence des joueurs aux sessions           
+
+            // const { Player} = require('../models/player'); // Importez les modèles Player et Session
+            const { Player } = require('../db/sequelize')
+
+            exports.getPlayersBySessionId = (req, res) => {
+              const sessionId = req.params.id;
+            
+              Session.findByPk(sessionId, {
+                include: [{ model: Player }]
+              })
+                .then(session => {
+                  if (!session) {
+                    const message = "La session demandée n'existe pas.";
+                    res.status(404).json({ message });
+                  } else {
+                    const players = session.Players.map(player => {
+                      return {
+                        id: player.id,
+                        firstName: player.firstName,
+                        photos: player.photos
+                      };
+                    });
+            
+                    const message = "Liste des joueurs inscrits à la session récupérée avec succès.";
+                    res.json({ message, data: players });
+                  }
+                })
+                .catch(error => {
+                  const message = "Une erreur s'est produite lors de la récupération des joueurs inscrits à la session.";
+                  res.status(500).json({ message, error });
+                });
+            };
+//  // * AJOUTER UN JOUEUR A LA SESSION
+// const jwt = require('jsonwebtoken');
+// const { Player, Session } = require('../db/sequelize');
+
+// exports.addPlayerToSession = (req, res) => {
+//   const token = req.headers.authorization; // Récupérer le token JWT depuis l'en-tête de la requête
+//   const playerId = jwt.verify(token, 'votre_clé_secrète').id; // Vérifier et décoder le token JWT pour obtenir l'ID du joueur
+
+//   const sessionId = req.params.sessionId;
+
+//   Promise.all([
+//     Session.findByPk(sessionId),
+//     Player.findByPk(playerId)
+//   ])
+//     .then(([session, player]) => {
+//       if (!session) {
+//         const message = "La session demandée n'existe pas.";
+//         res.status(404).json({ message });
+//       } else if (!player) {
+//         const message = "Le joueur demandé n'existe pas.";
+//         res.status(404).json({ message });
+//       } else {
+//         session.addPlayer(player);
+//         const message = "Le joueur a été ajouté à la session avec succès.";
+//         res.json({ message });
+//       }
+//     })
+//     .catch(error => {
+//       const message = "Une erreur s'est produite lors de l'ajout du joueur à la session.";
+//       res.status(500).json({ message, error });
+//     });
+// };
+// // * SUPPRIMER UN JOUEUR DE LA SESSION
+// exports.removePlayerFromSession = (req, res) => {
+//   const sessionId = req.params.sessionId;
+//   const playerId = req.params.playerId;
+
+//   Promise.all([
+//     Session.findByPk(sessionId),
+//     Player.findByPk(playerId)
+//   ])
+//     .then(([session, player]) => {
+//       if (!session) {
+//         const message = "La session demandée n'existe pas.";
+//         res.status(404).json({ message });
+//       } else if (!player) {
+//         const message = "Le joueur demandé n'existe pas.";
+//         res.status(404).json({ message });
+//       } else {
+//         session.removePlayer(player);
+//         const message = "Le joueur a été supprimé de la session avec succès.";
+//         res.json({ message });
+//       }
+//     })
+//     .catch(error => {
+//       const message = "Une erreur s'est produite lors de la suppression du joueur de la session.";
+//       res.status(500).json({ message, error });
+//     });
+// };

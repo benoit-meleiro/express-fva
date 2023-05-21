@@ -21,9 +21,11 @@ const sessionRouter = require('./src/routes/sessionRoutes')
 const clubRouter = require('./src/routes/clubRoutes')
 
 
+
 app.use('/players', playerRouter)
 app.use('/sessions', sessionRouter)
 app.use('/clubs', clubRouter)
+
 
 
 app.use(({res}) => {
