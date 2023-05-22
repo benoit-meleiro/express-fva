@@ -25,7 +25,8 @@ const Club = ClubModel (sequelize, DataTypes)
 Player.belongsToMany(Session, { through: 'Inscription' });
 Session.belongsToMany(Player, { through: 'Inscription' });
 
-
+Player.belongsToMany(Club, { through: 'Inscriptioninter' });
+Club.belongsToMany(Player, { through: 'Inscriptioninter' });
 
 
  //* On synchronise notre demande (méthode sync) 
