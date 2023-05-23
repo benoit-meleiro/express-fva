@@ -6,7 +6,7 @@ const clubController = require('../controllers/clubController')
 router
     .route('/')
     // .get(authController.protect, presentController.findAllClubs)
-    // .post(authController.protect, presentController.createClub)
+    .post(clubController.createClub)
     .get(clubController.findAllClubs)
     // .post(presentController.createClub)
    
@@ -14,11 +14,11 @@ router
 
 router
     .route('/:id')
-    // .get(presentController.getSessionPlayers)
+    
     // .put(presentController.updateClub)
-    // .delete(presentController.deleteclub)
-    // .get(authController.protect, presentController.findClubByPk)
-    // .put(authController.protect, presentController.updateClub)
+    .delete(clubController.deleteclub)
+    .get(clubController.findClubByPk)
+    .put(clubController.updateClub)
     // .delete(authController.protect, presentController.deleteclub)
     router
     .route('/:id/presentinter')
