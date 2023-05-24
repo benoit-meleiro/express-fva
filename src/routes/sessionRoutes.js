@@ -1,28 +1,27 @@
 const express = require('express');
 const router = express.Router();
 const sessionController = require('../controllers/sessionController')
-// const authController = require('../controllers/authController')
+const authController = require('../controllers/authController')
 
 router
     .route('/')
-    .get(sessionController.findAllSessions)
-    .post(sessionController.createSession)
-    // .get(authController.protect,sessionController.findAllSessions)
-    // .post(authController.protect,sessionController.createSession)
-    // .post(authController.protect, playerController.createPlayer)
+    .get(authController.protect, sessionController.findAllSessions)
+    .post(authController.protect, sessionController.createSession)
+   
 
 
 router
     .route('/:id')
-    .get(sessionController.findSessionByPk)
-    .put(sessionController.updateSession)
-    .delete(sessionController.deleteSession)
+    .get(authController.protect, sessionController.findSessionByPk)
+    // .get(authController.protect, authController.restrictTo('loisir', 'équipe', 'capitaine', 'admin'), sessionController.findSessionByPk)
+    .put(authController.protect, sessionController.updateSession)
+    .delete(authController.protect, sessionController.deleteSession)
     // .put(authController.protect, playerController.updatePlayer)
     // .delete(authController.protect, authController.restrictTo('user', 'admin'), playerController.deletePlayer)
     
     router
     .route('/:id/present')
-    .get(sessionController.getPlayersBySessionId);
+    .get(authController.protect, sessionController.getPlayersBySessionId);
     // router
     // .route('/:id/addpresent')
     // .post(sessionController.addPlayerToSession);
