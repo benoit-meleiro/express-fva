@@ -94,25 +94,7 @@ exports.findAllClubs =  (req, res) => {
               })
             }
           
-            // const validTypes = ['Plante', 'Poison', 'Feu', 'Eau', 'Insecte', 'Vol', 'Normal', 'Electrik', 'Fée']
-
-            // validate: {
-            //   isTypesValid <<<< nom arbitraire(value) {
-            //     if(!value) {
-            //       throw new Error('Un pokémon doit au moins avoir un type.')
-            //     }
-            //     if(value.split(',').length > 3) {
-            //       throw new Error('Un pokémon ne peux pas avoir plus de trois types.')
-            //     }
-            //     value.split(',').forEach(type => {
-            //       if(!validTypes.includes(type)) {
-            //         throw new Error(`Le type d'un pokémon doit appartenir à la liste suivante : ${validTypes}`)
-            //       }
-            //     });
-            //   }
-            // }
-
-            //* Présence des joueurs aux sessions           
+             //* Présence des joueurs aux interclubs          
 
             // const { Player} = require('../models/player'); // Importez les modèles Player et Session
             const { Player } = require('../db/sequelize')

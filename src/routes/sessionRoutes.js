@@ -21,12 +21,9 @@ router
     
     router
     .route('/:id/present')
-    .get(authController.protect, sessionController.getPlayersBySessionId);
-    // router
-    // .route('/:id/addpresent')
-    // .post(sessionController.addPlayerToSession);
-    // router
-    // .route('/:id/deletepresent')
-    // .delete(sessionController.removePlayerFromSession);
+    .get(authController.protect, sessionController.getPlayersBySessionId)
+    .post(authController.protect, sessionController.createPlayerInSession)
+    .delete(authController.protect, sessionController.deletePlayerFromSession);
+    
     
 module.exports = router; 
