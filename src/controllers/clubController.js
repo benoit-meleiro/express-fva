@@ -127,3 +127,88 @@ exports.findAllClubs =  (req, res) => {
                   res.status(500).json({ message, error });
                 });
             };
+
+//* AJOUT D'UN JOUEUR DANS LA BASE DE DONNEES InscriptionInter
+
+exports.createPlayerInTer = (req, res) => {
+  const clubId = req.params.id; // ID de l'interclub'
+  const playerId = req.body.playerId; // ID du joueur à créer
+
+  // Recherche de l'interclub par son ID
+  Club.findByPk(clubId)
+    .then(club => {
+      if (!club) {
+        const message = "La session demandée n'existe pas.";
+        res.status(404).json({ message });
+      } else {
+        // Création du joueur dans la session
+        Player.findByPk(playerId)
+          .then(player => {
+            if (!player) {
+              const message = "Le joueur demandé n'existe pas.";
+              res.status(404).json({ message });
+            } else {
+              club.addPlayer(player)
+                .then(() => {
+                  const message = "Joueur ajouté avec succès à l'interclub'.";
+                  res.status(201).json({ message });
+                })
+                .catch(error => {
+                  const message = "Une erreur s'est produite lors de l'ajout du joueur à l'interclub'.";
+                  res.status(500).json({ message, error });
+                });
+            }
+          })
+          .catch(error => {
+            const message = "Une erreur s'est produite lors de la recherche du joueur.";
+            res.status(500).json({ message, error });
+          });
+      }
+    })
+    .catch(error => {
+      const message = "Une erreur s'est produite lors de la recherche de l'interclub'.";
+      res.status(500).json({ message, error });
+    });
+};
+// * SUPPRIMER UN JOUEUR DE LA BDD INSCRIPTION
+
+exports.deletePlayerFromClub = (req, res) => {
+  const clubId = req.params.id; // ID de l'inter
+  const playerId = req.body.playerId; // ID du joueur à supprimer
+
+  // Recherche de la session par son ID
+  Club.findByPk(clubId)
+    .then(club => {
+      if (!club) {
+        const message = "L'interclub demandée n'existe pas.";
+        res.status(404).json({ message });
+      } else {
+        // Recherche du joueur par son ID
+        Player.findByPk(playerId)
+          .then(player => {
+            if (!player) {
+              const message = "Le joueur demandé n'existe pas.";
+              res.status(404).json({ message });
+            } else {
+              club.removePlayer(player)
+                .then(() => {
+                  const message = "Joueur supprimé avec succès de l'interclub'.";
+                  res.json({ message });
+                })
+                .catch(error => {
+                  const message = "Une erreur s'est produite lors de la suppression du joueur de l'interclub'.";
+                  res.status(500).json({ message, error });
+                });
+            }
+          })
+          .catch(error => {
+            const message = "Une erreur s'est produite lors de la recherche du joueur.";
+            res.status(500).json({ message, error });
+          });
+      }
+    })
+    .catch(error => {
+      const message = "Une erreur s'est produite lors de la recherche de la session.";
+      res.status(500).json({ message, error });
+    });
+};

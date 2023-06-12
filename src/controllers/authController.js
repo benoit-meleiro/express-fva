@@ -66,7 +66,7 @@ exports.restrictTo = (...roles) => {
         Player.findByPk(req.userId)
             .then(user => { 
                 console.log(user.lastName, user.id, roles) 
-                if(!user || !roles.every(role => user.roles.includes(role))){
+                if(!user || !roles.some(role => user.roles.includes(role))){
                     const message = "Droits insuffisants";
                     return res.status(403).json({message}) 
                 }

@@ -6,30 +6,20 @@ const presentInter = require('../controllers/presentInterController')
 
 router
     .route('/')
-    // .get(authController.protect, presentController.findAllClubs)
-    .post(clubController.createClub)
-    .get(clubController.findAllClubs)
-    // .post(presentController.createClub)
+    .post(authController.protect, authController.restrictTo('admin','capitaine'), clubController.createClub)
+    .get(authController.protect,clubController.findAllClubs)
    
-
-
 router
     .route('/:id')
-    
-    // .put(presentController.updateClub)
-    .delete(authController.protect, clubController.deleteclub)
+    .delete(authController.protect, authController.restrictTo('admin'), clubController.deleteclub)
     .get(authController.protect, clubController.findClubByPk)
-    .put(authController.protect, clubController.updateClub)
-    // .delete(authController.protect, presentController.deleteclub)
+    .put(authController.protect, authController.restrictTo('admin', 'capitaine'), clubController.updateClub)
+    
     router
     .route('/:id/presentinter')
-    .get(authController.protect, clubController.getPlayersByClubId);
-    // router
-    // .route('/:id/addpresent')
-    // .post(sessionController.addPlayerToSession);
-    // router
-    // .route('/:id/deletepresent')
-    // .delete(sessionController.removePlayerFromSession);
+    .get(authController.protect, clubController.getPlayersByClubId)
+    .post(authController.protect, clubController.createPlayerInTer)
+    .delete(authController.protect, clubController.deletePlayerFromClub)
     
 
 module.exports = router; 

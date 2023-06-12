@@ -120,7 +120,7 @@ exports.findAllSessions =  (req, res) => {
                 });
             };
 
-//* AJOUT D4UN JOUEUR DANS LA BASE DE DONNEES Inscription
+//* AJOUT D'UN JOUEUR DANS LA BASE DE DONNEES Inscription
 
 exports.createPlayerInSession = (req, res) => {
   const sessionId = req.params.id; // ID de la session

@@ -65,8 +65,7 @@ exports.findAllPlayers =  (req, res) => {
 
     exports.createPlayer = (req, res) => {
       const { firstName, lastName, sexe, emailPlayer, password, roles, jour_ouverture, joueur_interclubs, joueur_capitaine, photos } = req.body;
-    
-      bcrypt.hash(password, 10)
+          bcrypt.hash(password, 10)
         .then((hashedPassword) => {
           const playerData = {
             firstName,

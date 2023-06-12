@@ -21,7 +21,7 @@ const Player = PlayerModel (sequelize, DataTypes)
 const Session = SessionModel (sequelize, DataTypes)
 const Club = ClubModel (sequelize, DataTypes)
 
-// Table intermédiaire pour inscription session
+//* Table intermédiaire pour inscription session
 Player.belongsToMany(Session, { through: 'Inscription' });
 Session.belongsToMany(Player, { through: 'Inscription' });
 

@@ -61,25 +61,7 @@ module.exports = (sequelize, DataTypes) => {
       roles: {
         type: DataTypes.STRING,
         defaultValue: 'loisir',
-        // get() {
-        //   return this.getDataValue('roles').split(',');
-        // },
-        // set(roles) {
-        //   this.setDataValue('roles', roles.join());
-        // },
-        
-        // validate: {
-        //   areRolesValid(roles){
-        //     if(!roles){
-        //       throw new Error('Un utilisateur doit avoir au moins un rôle')
-        //     }
-        //     roles.split(',').forEach(role => {
-        //       if(!userRoles.includes(role)){
-        //         throw new Error(`Les rôles d'un utilisateur doivent appartenir à la liste suivante : ${userRoles}`)
-        //       }
-        //     })
-        //   }
-        // }
+       
         get() {
           return this.getDataValue('roles').split(',');
         },
@@ -93,7 +75,7 @@ module.exports = (sequelize, DataTypes) => {
         
         validate: {
           areRolesValid(roles){
-            const userRoles = ['loisir', 'équipe', 'capitaine', 'admin']; // Remplacez par votre liste de rôles autorisés
+            const userRoles = ['loisir', 'équipe', 'capitaine', 'admin']; 
             if (!roles) {
               throw new Error('Un utilisateur doit avoir au moins un rôle');
             }
@@ -117,3 +99,22 @@ module.exports = (sequelize, DataTypes) => {
     },
     )
   }
+  // get() {
+        //   return this.getDataValue('roles').split(',');
+        // },
+        // set(roles) {
+        //   this.setDataValue('roles', roles.join());
+        // },
+        
+        // validate: {
+        //   areRolesValid(roles){
+        //     if(!roles){
+        //       throw new Error('Un utilisateur doit avoir au moins un rôle')
+        //     }
+        //     roles.split(',').forEach(role => {
+        //       if(!userRoles.includes(role)){
+        //         throw new Error(`Les rôles d'un utilisateur doivent appartenir à la liste suivante : ${userRoles}`)
+        //       }
+        //     })
+        //   }
+        // }
