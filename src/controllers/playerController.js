@@ -3,26 +3,26 @@ const { UniqueConstraintError } = require('sequelize')
 const { Op } = require('sequelize')
 const bcrypt = require('bcrypt'); 
 
-// const capitalize = (str) => str.charAt(0).toUpperCase() + str.substring(1)
+
 
 exports.findAllPlayers =  (req, res) => {
   if(req.query.name) {
     const name = req.query.name
-    const limit = parseInt(req.query.limit) || 5 // si l'utilisateur ne met pas de limit 5 est la limite par défaut parse car exppress transmet une chaine de carac
+    const limit = parseInt(req.query.limit) || 5 
     if(name.length < 2) {
       const message = `le terme de recherche doit contenir au moins 2 caractères`
       return res.status(400).json({message})
     }
     
-    return Player.findAndCountAll({  // cette méthode renvoie un nombre limité (si onle souhaite) ou la totale si pas de limite
+    return Player.findAndCountAll({  
       where: { 
-        lastName: { // propriété du modèle
+        lastName: { 
           [Op.or]: {
-            [Op.like]: `%${name}%` // name est le critère de recherche
+            [Op.like]: `%${name}%` 
            }
         }
       },
-      order: ['lastName'], // c'est la propriété du modèle que l'on veut ordonner
+      order: ['lastName'], 
       limit: limit
     })
     .then(({count, rows}) => {

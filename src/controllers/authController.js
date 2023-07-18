@@ -42,7 +42,7 @@ exports.login = (req, res) => {
 
 
 exports.protect = (req, res, next) => {
-    const authorizationHeader = req.headers.authorization // on récupère l'en tête dans laquelle transite le jeton
+    const authorizationHeader = req.headers.authorization 
 
     if(!authorizationHeader){
         const message = "Un jeton est nécessaire pour accéder à la ressource"
@@ -50,8 +50,8 @@ exports.protect = (req, res, next) => {
     }
 
     try {
-        const token = authorizationHeader.split(' ')[1]; // on enlève bearer
-        const decoded = jwt.verify(token, privateKey) // verify = sign vu prédemment
+        const token = authorizationHeader.split(' ')[1]; 
+        const decoded = jwt.verify(token, privateKey) 
         req.userId = decoded.data
     } catch (err) {
         const message = "Jeton invalide"

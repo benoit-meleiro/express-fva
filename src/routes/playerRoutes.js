@@ -14,7 +14,7 @@ router
     .delete(authController.protect, authController.restrictTo('admin'), playerController.deletePlayer)
     .put(authController.protect, authController.restrictTo('admin'), playerController.updatePlayer)
     
-    // .delete(authController.protect, authController.restrictTo('admin'), playerController.deletePlayer)
+    
        
 router
     .route('/login')

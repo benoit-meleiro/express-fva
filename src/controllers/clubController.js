@@ -96,7 +96,7 @@ exports.findAllClubs =  (req, res) => {
           
              //* Présence des joueurs aux interclubs          
 
-            // const { Player} = require('../models/player'); // Importez les modèles Player et Session
+            // const { Player} = require('../models/player'); 
             const { Player } = require('../db/sequelize')
 
             exports.getPlayersByClubId = (req, res) => {
@@ -134,14 +134,14 @@ exports.createPlayerInTer = (req, res) => {
   const clubId = req.params.id; // ID de l'interclub'
   const playerId = req.body.playerId; // ID du joueur à créer
 
-  // Recherche de l'interclub par son ID
+  
   Club.findByPk(clubId)
     .then(club => {
       if (!club) {
         const message = "La session demandée n'existe pas.";
         res.status(404).json({ message });
       } else {
-        // Création du joueur dans la session
+        
         Player.findByPk(playerId)
           .then(player => {
             if (!player) {
@@ -173,17 +173,17 @@ exports.createPlayerInTer = (req, res) => {
 // * SUPPRIMER UN JOUEUR DE LA BDD INSCRIPTION
 
 exports.deletePlayerFromClub = (req, res) => {
-  const clubId = req.params.id; // ID de l'inter
-  const playerId = req.body.playerId; // ID du joueur à supprimer
+  const clubId = req.params.id; 
+  const playerId = req.body.playerId; 
 
-  // Recherche de la session par son ID
+ 
   Club.findByPk(clubId)
     .then(club => {
       if (!club) {
         const message = "L'interclub demandée n'existe pas.";
         res.status(404).json({ message });
       } else {
-        // Recherche du joueur par son ID
+        
         Player.findByPk(playerId)
           .then(player => {
             if (!player) {

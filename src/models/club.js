@@ -55,63 +55,62 @@ module.exports = (sequelize, DataTypes) => {
       },
       joueursDisposEq: {
         type: DataTypes.TEXT,
-        // allowNull: false,
+        
         
         
       },
       joueursNonDisposEq: {
         type: DataTypes.TEXT,
-        // allowNull: false,
-        
+       
       },
       joueurSh1: {
         type: DataTypes.TEXT,
-        // allowNull: false,
+        
         
       },
       joueurSh2: {
         type: DataTypes.TEXT,
-        // allowNull: false,
+        
        
       },
       joueurSd: {
         type: DataTypes.TEXT,
-        // allowNull: false,
+        
         
       },
       joueur1Dh: {
         type: DataTypes.TEXT,
-        // allowNull: false,
+        
         
       },
       joueur2Dh: {
         type: DataTypes.TEXT,
-        // allowNull: false,
+        //
         
       },
       joueur1Dd: {
         type: DataTypes.TEXT,
-        // allowNull: false,
+        
         
       },
       joueur2Dd: {
         type: DataTypes.TEXT,
-        // allowNull: false,
+        
        
       },
       joueur1Dm1: {
         type: DataTypes.TEXT,
-        // allowNull: false,
+        
         
       },
       joueur2Dm1: {
         type: DataTypes.TEXT,
-        // allowNull: false,
+        
        
       },
       joueur1Dm2: {
         type: DataTypes.TEXT,
-        // allowNull: false,
+        
         
       },
       joueur2Dm2: {

@@ -88,7 +88,7 @@ exports.findAllSessions =  (req, res) => {
 
  //* Présence des joueurs aux sessions           
 
-            // const { Player} = require('../models/player'); // Importez les modèles Player et Session
+            
             const { Player } = require('../db/sequelize')
 
             exports.getPlayersBySessionId = (req, res) => {
@@ -126,14 +126,14 @@ exports.createPlayerInSession = (req, res) => {
   const sessionId = req.params.id; // ID de la session
   const playerId = req.body.playerId; // ID du joueur à créer
 
-  // Recherche de la session par son ID
+ 
   Session.findByPk(sessionId)
     .then(session => {
       if (!session) {
         const message = "La session demandée n'existe pas.";
         res.status(404).json({ message });
       } else {
-        // Création du joueur dans la session
+       
         Player.findByPk(playerId)
           .then(player => {
             if (!player) {
@@ -165,17 +165,17 @@ exports.createPlayerInSession = (req, res) => {
  // * SUPPRIMER UN JOUEUR DE LA BDD INSCRIPTION
 
  exports.deletePlayerFromSession = (req, res) => {
-  const sessionId = req.params.id; // ID de la session
-  const playerId = req.body.playerId; // ID du joueur à supprimer
+  const sessionId = req.params.id; 
+  const playerId = req.body.playerId; 
 
-  // Recherche de la session par son ID
+ 
   Session.findByPk(sessionId)
     .then(session => {
       if (!session) {
         const message = "La session demandée n'existe pas.";
         res.status(404).json({ message });
       } else {
-        // Recherche du joueur par son ID
+        
         Player.findByPk(playerId)
           .then(player => {
             if (!player) {

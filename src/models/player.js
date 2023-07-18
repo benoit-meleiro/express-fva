@@ -1,4 +1,4 @@
-// const userRoles = ['loisir', 'équipe', 'capitaine', 'admin']
+
 
 module.exports = (sequelize, DataTypes) => {
     return sequelize.define('Player', {
@@ -99,22 +99,4 @@ module.exports = (sequelize, DataTypes) => {
     },
     )
   }
-  // get() {
-        //   return this.getDataValue('roles').split(',');
-        // },
-        // set(roles) {
-        //   this.setDataValue('roles', roles.join());
-        // },
-        
-        // validate: {
-        //   areRolesValid(roles){
-        //     if(!roles){
-        //       throw new Error('Un utilisateur doit avoir au moins un rôle')
-        //     }
-        //     roles.split(',').forEach(role => {
-        //       if(!userRoles.includes(role)){
-        //         throw new Error(`Les rôles d'un utilisateur doivent appartenir à la liste suivante : ${userRoles}`)
-        //       }
-        //     })
-        //   }
-        // }
+  
